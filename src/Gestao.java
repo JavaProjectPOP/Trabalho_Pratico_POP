@@ -24,10 +24,10 @@ public class Gestao {
         int select = sc.nextInt();
         switch (select) {
             case 1:
-                
+                Utilizador.Login();  
             break;
             case 2:
-                
+                Utilizador.Register();
             break;
 
             default:

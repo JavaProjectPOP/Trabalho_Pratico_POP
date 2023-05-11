@@ -7,10 +7,10 @@ public class Utilizador {
         this.Username=username;
     }
 
-    public void login(){
+    public void Login(){
 
     }
-    public void register(){
+    public void Register(){
 
     }
     
