@@ -6,11 +6,10 @@ public class Utilizador {
         this.Password=password;
         this.Username=username;
     }
-
-    public void Login(){
+    public void login(){
 
     }
-    public void Register(){
+    public void register(){
 
     }
     

@@ -8,13 +8,22 @@ public class Gestao {
     private List<Cliente> clientes;
     private List<Venda> vendas;
 
+
     public Gestao() {
         produtos = new ArrayList<>();
         utillizadores = new ArrayList<>();
         clientes = new ArrayList<>();
         vendas = new ArrayList<>();
     }
-    public static void menu_inicial(){
+    public void addInfos(Utilizador utilizador){
+        utillizadores.add(utilizador);
+    }
+    public void isLoginValid(){
+        for (Utilizador i : utillizadores) {
+            
+        }
+    }
+    /**public static void menu_inicial(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Bem vindo!");
         System.out.println("\n1-Fazer login\n2-Registar-se");
@@ -24,15 +33,15 @@ public class Gestao {
         int select = sc.nextInt();
         switch (select) {
             case 1:
-                Utilizador.Login();  
+                
             break;
             case 2:
-                Utilizador.Register();
+                
             break;
 
             default:
                 menu_inicial();  //would you re call itself again here? or is there any otherway to do without recalling itself?
 
         }
-    }
+    }**/
 }

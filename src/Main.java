@@ -4,6 +4,9 @@ public class Main {
     public static void main(String[] args) {
         Gestao g1= new Gestao();
         Utilizador u1 = new Utilizador("cenas","pp123");
-        g1.menu_inicial();
+        Utilizador u2 = new Utilizador("roig","rpgo");
+        g1.addInfos(u1);
+        g1.addInfos(u2);
+        g1.isLoginValid();
     }
 }
