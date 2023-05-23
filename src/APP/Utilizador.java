@@ -1,4 +1,4 @@
-package View;
+package APP;
 
 public class Utilizador {
     private String PrimeiroNome;

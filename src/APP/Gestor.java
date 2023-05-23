@@ -1,6 +1,5 @@
-package View;
+package APP;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -55,6 +54,10 @@ public class Gestor {
             String Opcao = myObj.nextLine();
             menu1(Opcao);
         }
+    }
+
+    public ArrayList<Utilizador> getListaUtilizador() {
+        return ListaUtilizador;
     }
 
     public void menu1(String Opcao){
