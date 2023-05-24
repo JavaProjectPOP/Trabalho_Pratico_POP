@@ -34,11 +34,11 @@ public class First_Page extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+//por favor
 
     }
     private void registo(ActionEvent actionEvent){
-        Registro registro=new Registro();
+        Registro registro =new Registro();
     }
     private void Login(ActionEvent actionEvent){
 

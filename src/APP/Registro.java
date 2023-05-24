@@ -14,7 +14,7 @@ public class Registro extends JFrame implements ActionListener {
     private JButton sairButton;
     private JButton registrarButton;
 
-    Gestor cv= new Gestor();
+    //Gestor cv= new Gestor();
 public Registro() {
 
     setTitle("Pagina inicial");
@@ -23,6 +23,9 @@ public Registro() {
     setResizable(true);
     setLocationRelativeTo(null);
     setLayout(null);
+
+
+
 
     textField1.setBounds(250,250,100,40);
     textField1.setFont(new Font("Arial",Font.CENTER_BASELINE,15));
@@ -40,11 +43,11 @@ public Registro() {
             utilizador.setPrimeiroNome(textField1.getText());
             utilizador.setUltimoNome(textField2.getText());
 
-            if(cv.GuardarUser(utilizador)){
+            /*if(cv.GuardarUser(utilizador)){
                 JOptionPane.showMessageDialog(null,"Utilizador Registado");
             }else{
                 JOptionPane.showMessageDialog(null,"Erro, por favor registe de novo");
-            }
+            }*/
         }
     });
     sairButton.addActionListener(new ActionListener() {

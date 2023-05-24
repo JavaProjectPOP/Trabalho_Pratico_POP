@@ -22,8 +22,8 @@ import java.util.Scanner;
 //atualização do stock disponível após a compra de produtos.
 //9. O programa deve permitir ao utilizador criar relatórios de vendas, que mostram as vendas
 //totais por período de tempo, as vendas por produto e a quantidade em stock atualizada.
-//yh isso mesmo, se puderes trsta io rograma que esta agora e diz o que achas
-//vale obrigado
+//de boa ent, força, qualquer coisa manda mensagem
+
 public class Gestor {
     private boolean on = true;
     Scanner myObj = new Scanner(System.in);

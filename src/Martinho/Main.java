@@ -5,6 +5,5 @@ public class Main {
 
         //First_Page c = new First_Page();
         Gestor g =new Gestor();
-        
     }
 }
