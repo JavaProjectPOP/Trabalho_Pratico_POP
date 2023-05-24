@@ -6,8 +6,17 @@ public class Produtos {
     private double Preco;
     private int Stock;
     private String Origem;
+    private int id = 0;
 
     public Produtos(){
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public double getPreco() {
