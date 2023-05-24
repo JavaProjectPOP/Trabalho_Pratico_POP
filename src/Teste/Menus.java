@@ -103,7 +103,7 @@ public class Menus {
                         String nome = gestor.myObj.nextLine();
                         u.setPrimeiroNome(nome);
                         System.out.println("Nome alterado com sucesso");
-                        APP(email,pass);
+                        gestor.APP(email,pass);
                     }
                 }
                 break;
