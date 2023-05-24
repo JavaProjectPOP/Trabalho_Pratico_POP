@@ -24,11 +24,10 @@ import java.util.Scanner;
 //totais por período de tempo, as vendas por produto e a quantidade em stock atualizada.
 
 public class Gestor {
-
-    private String Opcao;
     private boolean on = true;
     Scanner myObj = new Scanner(System.in);
     private ArrayList<Utilizador> ListaUtilizador = new ArrayList<>();
+    private ArrayList<Produtos> ListaProdutos = new ArrayList<>();
 
     private Menus menus=new Menus();
     public Gestor()
@@ -45,19 +44,22 @@ public class Gestor {
     }
 
 
+
     public ArrayList<Utilizador> getListaUtilizador() {
         return ListaUtilizador;
     }
 
-
+    public ArrayList<Produtos> getListaProdutos() {
+        return ListaProdutos;
+    }
 
     public void APP(String email, String pass){
         for (Utilizador u : ListaUtilizador){
             if(email.equals(u.getEmail())&&pass.equals(u.getPalavraPasse())){
                 System.out.println("Bem Vindo "+u.getPrimeiroNome()+" "+u.getUltimoNome());
                 System.out.println("1- Alterar os seus dados de usuario");
-                //System.out.println("3- Adicionar um produto");
-                //System.out.println("4- Editar as informações de um produto existente");
+                System.out.println("3- Adicionar um produto");
+                System.out.println("4- Editar as informações de um produto existente");
                 System.out.println("5- Logout");
                 String opcao = myObj.nextLine();
                 menus.menu2(opcao, email,pass);
@@ -71,6 +73,14 @@ public class Gestor {
     public boolean GuardarUser(Utilizador utilizador){
         if(utilizador != null){
             ListaUtilizador.add(utilizador);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean GuardarProduto(Produtos produtos){
+        if(produtos != null){
+            ListaProdutos.add(produtos);
             return true;
         }else{
             return false;

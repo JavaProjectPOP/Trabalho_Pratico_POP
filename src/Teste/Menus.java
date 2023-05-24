@@ -87,6 +87,37 @@ public class Menus {
 
                 }
             }
+            case"2":{
+                for (Utilizador u: gestor.getListaUtilizador()) {
+                    if (email.equals(u.getEmail()) && pass.equals(u.getPalavraPasse())) {
+                        System.out.println("Nome do produto: ");
+                        String N_P = gestor.myObj.nextLine();
+                        System.out.println("Categoria: ");
+                        String Categ = gestor.myObj.nextLine();
+                        System.out.println("Preço: ");
+                        String tPreco = gestor.myObj.nextLine();
+                        double preco = Double.parseDouble(tPreco);
+                        System.out.println("Stock: ");
+                        String tStock = gestor.myObj.nextLine();
+                        int Stock = Integer.parseInt(tStock);
+                        Produtos p = new Produtos();
+                        p.setNomeProduto(N_P);
+                        p.setNomeProduto(Categ);
+                        p.setPreco(preco);
+                        p.setStock(Stock);
+                        String origin = "";
+                        origin.concat(u.getEmail());
+                        p.setOrigem(origin);
+                        System.out.println("Produto adicionado com sucesso");
+                        break;
+                    }
+                }
+            }
+            /*case"4":{
+                //Editar as informações de um produto existente
+                System.out.println("");
+                break;
+            }*/
             case"5":{
                 menu0();
             }
