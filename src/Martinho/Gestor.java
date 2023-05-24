@@ -22,7 +22,6 @@ import java.util.Scanner;
 //atualização do stock disponível após a compra de produtos.
 //9. O programa deve permitir ao utilizador criar relatórios de vendas, que mostram as vendas
 //totais por período de tempo, as vendas por produto e a quantidade em stock atualizada.
-//de boa ent, força, qualquer coisa manda mensagem
 
 public class Gestor {
     private boolean on = true;
@@ -33,9 +32,19 @@ public class Gestor {
     private Menus menus=new Menus();
     public Gestor()
     {
-        menus.menu0();
+        menu0();
     }
-
+    public void menu0(){
+        while(isOn()){
+            System.out.println("Bem Vindo a App");
+            System.out.println("1-Registar um usuario");
+            System.out.println("2-Logar a sua conta");
+            System.out.println("3-Sair");
+            System.out.println("Escolha: ");
+            String Opcao = myObj.nextLine();
+            menus.menu1(Opcao);
+        }
+    }
     public boolean isOn() {
         return on;
     }

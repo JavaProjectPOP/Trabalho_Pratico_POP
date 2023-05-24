@@ -1,22 +1,9 @@
 package Martinho;
-//yh
-
 public class Menus {
-    private Gestor gestor;
+    public Gestor gestor;
 
     public Menus(){
 
-    }
-    public void menu0(){
-        while(gestor.isOn()){
-            System.out.println("Bem Vindo a App");
-            System.out.println("1-Registar um usuario");
-            System.out.println("2-Logar a sua conta");
-            System.out.println("3-Sair");
-            System.out.println("Escolha: ");
-            String Opcao = gestor.myObj.nextLine();
-            menu1(Opcao);
-        }
     }
     public void menu1(String Opcao){
         switch (Opcao){
@@ -114,13 +101,15 @@ public class Menus {
                     }
                 }
             }
-            /*case"4":{
+            case"4":{
                 //Editar as informações de um produto existente
-                System.out.println("");
+                for (Produtos produtos: gestor.getListaProdutos()) {
+                    System.out.println(produtos);
+                }
                 break;
-            }*/
+            }
             case"5":{
-                menu0();
+                gestor.menu0();
             }
         }
     }
