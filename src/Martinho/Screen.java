@@ -1,4 +1,4 @@
-package Teste;
+package Martinho;
 
 import javax.swing.*;
 import java.awt.*;

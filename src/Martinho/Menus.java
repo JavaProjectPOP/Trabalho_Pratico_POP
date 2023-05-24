@@ -1,4 +1,5 @@
-package Teste;
+package Martinho;
+//yh
 
 public class Menus {
     private Gestor gestor;
@@ -7,7 +8,7 @@ public class Menus {
 
     }
     public void menu0(){
-        while(gestor.isOn() == true){
+        while(gestor.isOn()){
             System.out.println("Bem Vindo a App");
             System.out.println("1-Registar um usuario");
             System.out.println("2-Logar a sua conta");
