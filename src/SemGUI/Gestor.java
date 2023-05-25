@@ -557,7 +557,7 @@ public class Gestor {
                             String N_S = myObj.nextLine();
                             clearBuffer(myObj);
                             p.setNomeProduto(N_S);
-                            System.out.println("Informação alterada com sucesso");
+                            System.out.println("Informação alterada com sucesso\n");
                             APP(email, pass);
                         }
                     }
@@ -591,7 +591,7 @@ public class Gestor {
                         p.setNomeProduto(Categ);
                         p.setPreco(preco);
                         p.setStock(Stock);
-                        System.out.println("Produto alterado com sucesso");
+                        System.out.println("Produto alterado com sucesso\n");
                         APP(email, pass);
                     }
                 }
@@ -609,14 +609,7 @@ public class Gestor {
                     APP(email, pass);
                 } else {
 
-                    System.out.println("Escreva o que quer pesquisar:");
-                    String pesquisa = myObj.nextLine();
-
-                    clearBuffer(myObj);
-                    System.out.println("Lista de Produtos");
-
-                    for (Produtos p : ListaProdutos) {
-                        allProducts();
+                            allProducts();
                         APP(email, pass);
                     }
                 }
@@ -636,8 +629,12 @@ public class Gestor {
                     System.out.println("Lista de Produtos");
 
                     for (Produtos p : ListaProdutos) {
-                        allProducts();
-                        APP(email, pass);
+                        if (pesquisa.equals(p.getCategoria())){
+                            System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                                    + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem()+"---------------------------\n\n");
+                            APP(email, pass);
+                        }
+
                     }
                 }
                 APP(email, pass);
@@ -657,13 +654,16 @@ public class Gestor {
                     System.out.println("Lista de Produtos");
 
                     for (Produtos p : ListaProdutos) {
-                        allProducts();
-                        APP(email, pass);
+                        if(pesquisa.equals(p.getCategoria())||pesquisa.equals(p.getNomeProduto())){
+                            System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                                    + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem()+"---------------------------\n\n");
+                            APP(email, pass);
+                        }
+
                     }
                 }
                 APP(email, pass);
                 break;
-
             }
         }
     }
@@ -676,9 +676,11 @@ public class Gestor {
             System.out.println("Lista de Produtos");
             for (Produtos p : getListaProdutos()) {
                 System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
-                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem()+"---------------------------");
+                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem()+"---------------------------\n\n");
+
             }
         }
+        return;
     }
     public void menuCompraVenda(String op, String email, String pass){
         String pattern = "dd-M-yyyy hh:mm:ss";
