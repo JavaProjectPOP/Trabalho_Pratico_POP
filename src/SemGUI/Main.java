@@ -1,4 +1,4 @@
-package Teste;
+package SemGUI;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,13 +1,22 @@
-package Teste;
+package SemGUI;
 
 public class Utilizador {
     private String PrimeiroNome;
     private String UltimoNome;
     private String PalavraPasse;
     private String Email;
+    private String morada;
 
 
     public Utilizador(){
+    }
+
+    public String getMorada() {
+        return morada;
+    }
+
+    public void setMorada(String morada) {
+        this.morada = morada;
     }
 
     public void setEmail(String email) {

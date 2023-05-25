@@ -1,4 +1,4 @@
-package Teste;
+package SemGUI;
 
 public class Produtos {
     private String NomeProduto;

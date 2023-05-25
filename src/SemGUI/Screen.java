@@ -1,4 +1,4 @@
-package Teste;
+package SemGUI;
 
 import javax.swing.*;
 import java.awt.*;
