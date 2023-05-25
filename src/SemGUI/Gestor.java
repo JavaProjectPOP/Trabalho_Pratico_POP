@@ -44,6 +44,7 @@ public class Gestor {
             System.out.println("3-Sair");
             System.out.println("Escolha: ");
             String Opcao = myObj.nextLine();
+            clearBuffer(myObj);
             menu1(Opcao);
         }
     }
@@ -84,6 +85,7 @@ public class Gestor {
                 System.out.println("9- Ver as informações das suas vendas e compras");
                 System.out.println("10- Logout");
                 String opcao = myObj.nextLine();
+                clearBuffer(myObj);
                 menu2(opcao, email, pass);
             }
         }
@@ -117,12 +119,8 @@ public class Gestor {
     }
 
     public boolean RemoverProduto(Produtos produtos) {
-        if (produtos != null) {
-            ListaProdutos.remove(produtos);
-            return true;
-        } else {
-            return false;
-        }
+        ListaProdutos.remove(produtos);
+        return true;
     }
 
     public void menu1(String Opcao) {
@@ -130,14 +128,19 @@ public class Gestor {
             case "1": {
                 System.out.println("Primeiro nome: ");
                 String P_N = myObj.nextLine();
+                clearBuffer(myObj);
                 System.out.println("Ultimo nome: ");
                 String U_N = myObj.nextLine();
+                clearBuffer(myObj);
                 System.out.println("Morada: ");
                 String Morada = myObj.nextLine();
+                clearBuffer(myObj);
                 System.out.println("Email: ");
                 String email = myObj.nextLine();
+                clearBuffer(myObj);
                 System.out.println("Palavra passe: ");
                 String P_P = myObj.nextLine();
+                clearBuffer(myObj);
                 Utilizador u = new Utilizador();
                 u.setPrimeiroNome(P_N);
                 u.setUltimoNome(U_N);
@@ -156,8 +159,10 @@ public class Gestor {
             case "2": {
                 System.out.println("Email: ");
                 String email = myObj.nextLine();
+                clearBuffer(myObj);
                 System.out.println("Palavra Passe: ");
                 String pp = myObj.nextLine();
+                clearBuffer(myObj);
                 for (Utilizador utilizador : getListaUtilizador()) {
                     String tEmail = utilizador.getEmail();
                     String tpp = utilizador.getPalavraPasse();
@@ -191,24 +196,29 @@ public class Gestor {
                         System.out.println("4-Palava-passe");
                         System.out.println("5-Todas as informações");
                         String op = myObj.nextLine();
+                        clearBuffer(myObj);
                         menu3(op, email, pass);
-                        break;
                     }
 
                 }
+                break;
             }
             case "2": {
                 for (Utilizador u : getListaUtilizador()) {
                     if (email.equals(u.getEmail()) && pass.equals(u.getPalavraPasse())) {
                         System.out.println("Nome do produto: ");
                         String N_P = myObj.nextLine();
+                        clearBuffer(myObj);
                         System.out.println("Categoria: ");
                         String Categ = myObj.nextLine();
+                        clearBuffer(myObj);
                         System.out.println("Preço(xx.xx): ");
                         String tPreco = myObj.nextLine();
+                        clearBuffer(myObj);
                         double preco = Double.parseDouble(tPreco);
                         System.out.println("Stock: ");
                         String tStock = myObj.nextLine();
+                        clearBuffer(myObj);
                         int Stock = Integer.parseInt(tStock);
                         Produtos p = new Produtos();
                         p.setNomeProduto(N_P);
@@ -223,9 +233,11 @@ public class Gestor {
                         p.setOrigem(origin);
                         GuardarProduto(p);
                         System.out.println("Produto adicionado com sucesso");
-                        break;
+                        APP(email, pass);
                     }
                 }
+
+                break;
             }
             case "4": {
                 //Editar as informações de um produto existente
@@ -233,6 +245,7 @@ public class Gestor {
                 System.out.println("Qual é o ID do produto que deseja alterar as informações?");
                 System.out.println("Escolha: ");
                 String Id = myObj.nextLine();
+                clearBuffer(myObj);
                 System.out.println("o que deseja alterar?");
                 System.out.println("1- Nome do produto");
                 System.out.println("2- Categoria");
@@ -240,6 +253,7 @@ public class Gestor {
                 System.out.println("4- Stock");
                 System.out.println("5- Todas as informações");
                 String op = myObj.nextLine();
+                clearBuffer(myObj);
                 menu4(op, email, pass, Id);
                 break;
             }
@@ -248,17 +262,20 @@ public class Gestor {
                 System.out.println("Qual é o ID do produto que deseja remover?");
                 System.out.println("Escolha: ");
                 String Id = myObj.nextLine();
+                clearBuffer(myObj);
                 for (Produtos p :
                         getListaProdutos()) {
                     if (Id.equals(p.getId()) && email.equals(p.getOrigem())) {
                         RemoverProduto(p);
                         System.out.println("Produto removido com sucesso");
+                        APP(email, pass);
                     }
                 }
                 break;
             }
             case "6": {
                 allProducts();
+                APP(email, pass);
                 break;
             }
             case "7": {
@@ -267,7 +284,9 @@ public class Gestor {
                 System.out.println("2- Pesquisar produtos pela categoria");
                 System.out.println("3- Pesquisar em nomes de produtos e categorias");
                 String pesquisa = myObj.nextLine();
+                clearBuffer(myObj);
                 menuPesquisa(pesquisa, email, pass);
+                break;
             }
             case "8": {
                 //8- Fazer uma compra de um produto
@@ -276,6 +295,7 @@ public class Gestor {
                 System.out.println("Peço que faça a compra de um produto de cada vez\n" +
                         "Qual é o id do produto que deseja comprar?");
                 String produto = myObj.nextLine();
+                clearBuffer(myObj);
                 if (produto.equals("IDS") || produto.equals("ids")) {
                     allProducts();
                 }else{
@@ -288,6 +308,7 @@ public class Gestor {
                             System.out.println("Existem "+p.getStock()+" em stock");
                             System.out.println("Qual é a quantidade que deseja comprar?");
                             String QNT=myObj.nextLine();
+                            clearBuffer(myObj);
                             int qnt = Integer.parseInt(QNT);
                             if(qnt>p.getStock()){
                                 System.out.println("Valor superior ao stock, compra cancelada, recomeçe a compra");
@@ -296,6 +317,7 @@ public class Gestor {
                             System.out.println("O total é: "+qnt*p.getPreco()+
                                     "\nDeseja prosseguir com a compra?(responda com sim/nao)");
                             String opcion = myObj.nextLine();
+                            clearBuffer(myObj);
                             if(opcion.equals("sim")||opcion.equals("Sim")||opcion.equals("SIM")){
                                 Vendas v =new Vendas();
                                 v.setCategoria_Produto(p.getCategoria());
@@ -324,13 +346,16 @@ public class Gestor {
                             }else if(opcion.equals("nao")||opcion.equals("Nao")||opcion.equals("NAO")||
                                     opcion.equals("nãO")||opcion.equals("Não")){
                                 System.out.println("Compra cancelada");
+                                APP(email, pass);
                             }
 
                         }else{
                             System.out.println("Já nao existe esse produto em stock");
+                            APP(email, pass);
                         }
                     }
                 }
+                APP(email, pass);
                 break;
             }
             case "9": {
@@ -338,7 +363,9 @@ public class Gestor {
                 System.out.println("2- Ver as compras feitas");
                 System.out.println("3- Alterar o estado de uma venda");
                 String op = myObj.nextLine();
-                menuCompraVenda(op,email);
+                clearBuffer(myObj);
+                menuCompraVenda(op,email,pass);
+                break;
             }
             case "10": {
                 menu0();
@@ -355,6 +382,7 @@ public class Gestor {
                         System.out.println("Primeiro nome atual: " + u.getPrimeiroNome());
                         System.out.println("Novo nome: ");
                         String nome = myObj.nextLine();
+                        clearBuffer(myObj);
                         u.setPrimeiroNome(nome);
                         System.out.println("Nome alterado com sucesso");
                         APP(email, pass);
@@ -371,6 +399,7 @@ public class Gestor {
                         System.out.println("Ultimo nome atual: " + u.getUltimoNome());
                         System.out.println("Novo nome: ");
                         String nome = myObj.nextLine();
+                        clearBuffer(myObj);
                         u.setUltimoNome(nome);
                         System.out.println("Ultimo nome alterado com sucesso");
                         APP(email, pass);
@@ -386,6 +415,7 @@ public class Gestor {
                         System.out.println("Email atual: " + u.getEmail());
                         System.out.println("Novo email: ");
                         String tEmail = myObj.nextLine();
+                        clearBuffer(myObj);
                         u.setEmail(tEmail);
                         System.out.println("Email alterado com sucesso");
                         APP(tEmail, pass);
@@ -401,6 +431,7 @@ public class Gestor {
                         System.out.println("Palavra-passe atual: " + u.getPalavraPasse());
                         System.out.println("Nova palavra-passe: ");
                         String tpp = myObj.nextLine();
+                        clearBuffer(myObj);
                         u.setPalavraPasse(tpp);
                         System.out.println("Palavra-passe alterado com sucesso");
                         APP(email, tpp);
@@ -416,35 +447,39 @@ public class Gestor {
                         System.out.println("Primeiro nome atual: " + u.getPrimeiroNome());
                         System.out.println("Novo nome: ");
                         String Pnome = myObj.nextLine();
+                        clearBuffer(myObj);
                         u.setPrimeiroNome(Pnome);
                         System.out.println("Nome alterado com sucesso");
                         //Alterar ultimo nome
                         System.out.println("Ultimo nome atual: " + u.getUltimoNome());
                         System.out.println("Novo nome: ");
                         String Unome = myObj.nextLine();
+                        clearBuffer(myObj);
                         u.setUltimoNome(Unome);
                         System.out.println("Ultimo nome alterado com sucesso");
                         //Alterar email
                         System.out.println("Email atual: " + u.getEmail());
                         System.out.println("Novo nome: ");
                         String tEmail = myObj.nextLine();
+                        clearBuffer(myObj);
                         u.setEmail(tEmail);
                         System.out.println("Email alterado com sucesso");
                         //Alterar Palaavra passe
                         System.out.println("Palavra-passe atual: " + u.getPalavraPasse());
                         System.out.println("Nova palavra-passe: ");
                         String tpp = myObj.nextLine();
+                        clearBuffer(myObj);
                         u.setPalavraPasse(tpp);
                         System.out.println("Palavra-passe alterado com sucesso");
                         APP(tEmail, tpp);
                     }
                 }
+                APP(email, pass);
                 break;
             }
 
         }
     }
-
     //menu utilizado para mudar as inforamaçoes de um produto
     public void menu4(String op, String email, String pass, String ID) {
         switch (op) {
@@ -455,10 +490,13 @@ public class Gestor {
                         System.out.println("Nome atual do produto: " + p.getNomeProduto());
                         System.out.println("Novo nome do produto: ");
                         String N_N = myObj.nextLine();
+                        clearBuffer(myObj);
                         p.setNomeProduto(N_N);
                         System.out.println("Informação alterada com sucesso");
+                        APP(email, pass);
                     }
                 }
+                APP(email, pass);
                 break;
 
             }
@@ -469,10 +507,13 @@ public class Gestor {
                         System.out.println("Categoria atual do produto: " + p.getCategoria());
                         System.out.println("Nova categoria do produto: ");
                         String N_C = myObj.nextLine();
+                        clearBuffer(myObj);
                         p.setNomeProduto(N_C);
                         System.out.println("Informação alterada com sucesso");
+                        APP(email, pass);
                     }
                 }
+
                 break;
             }
             case "3": {
@@ -482,13 +523,15 @@ public class Gestor {
                         System.out.println("Preço atual do produto: " + p.getPreco());
                         System.out.println("Preço nome do produto: ");
                         String N_P = myObj.nextLine();
+                        clearBuffer(myObj);
                         p.setNomeProduto(N_P);
                         System.out.println("Informação alterada com sucesso");
+                        APP(email, pass);
                     }
                 }
+
                 break;
             }
-
             case "4": {
                 for (Produtos p :
                         getListaProdutos()) {
@@ -497,24 +540,29 @@ public class Gestor {
                         System.out.println("1- Adicionar produtos ao stock atual");
                         System.out.println("2- Mudar o stock atual");
                         String op_p = myObj.nextLine();
+                        clearBuffer(myObj);
                         if (op_p.equals("1")) {
                             System.out.println("Quantidade a adicionar: ");
                             String N_S = myObj.nextLine();
+                            clearBuffer(myObj);
                             int tStock = Integer.parseInt(N_S);
                             int ttStock = p.getStock();
                             tStock+=ttStock;
                             p.setNomeProduto(String.valueOf(tStock));
                             System.out.println("Stock adicionado com sucesso");
-
+                            APP(email, pass);
                         }
                         else if (op_p.equals("2")) {
                             System.out.println("Novo nome do produto: ");
                             String N_S = myObj.nextLine();
+                            clearBuffer(myObj);
                             p.setNomeProduto(N_S);
                             System.out.println("Informação alterada com sucesso");
+                            APP(email, pass);
                         }
                     }
                 }
+                APP(email, pass);
                 break;
             }
             case "5": {
@@ -524,25 +572,30 @@ public class Gestor {
                         System.out.println("Nome atual do produto: " + p.getNomeProduto());
                         System.out.println("Novo nome do produto: ");
                         String N_P = myObj.nextLine();
+                        clearBuffer(myObj);
                         System.out.println("Categoria atual: " + p.getCategoria());
                         System.out.println("Nova categoria: ");
                         String Categ = myObj.nextLine();
+                        clearBuffer(myObj);
                         System.out.println("Preço atual: " + p.getPreco());
                         System.out.println("Novo preço: ");
                         String tPreco = myObj.nextLine();
+                        clearBuffer(myObj);
                         double preco = Double.parseDouble(tPreco);
                         System.out.println("Stock atual: " + p.getStock());
                         System.out.println("Novo stock: ");
                         String tStock = myObj.nextLine();
+                        clearBuffer(myObj);
                         int Stock = Integer.parseInt(tStock);
                         p.setNomeProduto(N_P);
                         p.setNomeProduto(Categ);
                         p.setPreco(preco);
                         p.setStock(Stock);
                         System.out.println("Produto alterado com sucesso");
-
+                        APP(email, pass);
                     }
                 }
+                APP(email, pass);
                 break;
             }
 
@@ -553,25 +606,27 @@ public class Gestor {
             case "1":{
                 if (ListaProdutos.size() == 0) {
                     System.out.println("Sem produtos adicionados na loja");
+                    APP(email, pass);
                 } else {
 
                     System.out.println("Escreva o que quer pesquisar:");
                     String pesquisa = myObj.nextLine();
 
-
+                    clearBuffer(myObj);
                     System.out.println("Lista de Produtos");
 
                     for (Produtos p : ListaProdutos) {
-                        if (pesquisa.equals(p.getNomeProduto())){
-                            System.out.println("---------------------------" + "ID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
-                                    + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem());
-                        }
+                        allProducts();
+                        APP(email, pass);
                     }
                 }
+                APP(email, pass);
+                break;
             }
             case "2":{
                 if (ListaProdutos.size() == 0) {
                     System.out.println("Sem produtos adicionados na loja");
+                    APP(email, pass);
                 } else {
 
                     System.out.println("Escreva o que quer pesquisar:");
@@ -581,17 +636,18 @@ public class Gestor {
                     System.out.println("Lista de Produtos");
 
                     for (Produtos p : ListaProdutos) {
-                        if (pesquisa.equals(p.getCategoria())){
-                            System.out.println("---------------------------" + "ID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
-                                    + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem());
-                        }
+                        allProducts();
+                        APP(email, pass);
                     }
                 }
+                APP(email, pass);
+                break;
             }
             case "3":{
 
                 if (ListaProdutos.size() == 0) {
                     System.out.println("Sem produtos adicionados na loja");
+                    APP(email, pass);
                 } else {
 
                     System.out.println("Escreva o que quer pesquisar:");
@@ -601,12 +657,13 @@ public class Gestor {
                     System.out.println("Lista de Produtos");
 
                     for (Produtos p : ListaProdutos) {
-                        if (pesquisa.equals(p.getNomeProduto())||pesquisa.equals(p.getCategoria())){
-                            System.out.println("---------------------------" + "ID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
-                                    + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem());
-                        }
+                        allProducts();
+                        APP(email, pass);
                     }
                 }
+                APP(email, pass);
+                break;
+
             }
         }
     }
@@ -618,12 +675,12 @@ public class Gestor {
         } else {
             System.out.println("Lista de Produtos");
             for (Produtos p : getListaProdutos()) {
-                System.out.println("---------------------------" + "ID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
-                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem());
+                System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem()+"---------------------------");
             }
         }
     }
-    public void menuCompraVenda(String op, String email){
+    public void menuCompraVenda(String op, String email, String pass){
         String pattern = "dd-M-yyyy hh:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         String date = simpleDateFormat.format(new Date());
@@ -648,8 +705,11 @@ public class Gestor {
                         System.out.println("Valor total: "+v.getValor_Total());
                         System.out.println("Estado: "+v.getEstadoCompra());
                         System.out.println("---------------------------");
+                        APP(email, pass);
                     }
                 }
+                APP(email,pass);
+                break;
             }
             case "2":{
                 System.out.println("Lista de Compras");
@@ -668,12 +728,16 @@ public class Gestor {
                         System.out.println("Valor total: "+v.getValor_Total());
                         System.out.println("Estado: "+v.getEstadoCompra());
                         System.out.println("---------------------------");
+                        APP(email, pass);
                     }
                 }
+                APP(email, pass);
+                break;
             }
             case "3":{
                 System.out.println("Qual é o ID de venda que deseja alterar");
                 String id = myObj.nextLine();
+                clearBuffer(myObj);
                 for(Vendas v : getListaVendas()){
                     if(v.getEmailVendedor().equals(email)&& id.equals(v.getID())){
                         System.out.println("---------------------------");
@@ -693,9 +757,17 @@ public class Gestor {
                         String estado = myObj.nextLine();
                         v.setEstadoCompra(estado);
                         System.out.println("Estado atualizado");
+                        APP(email, pass);
                     }
                 }
+                APP(email, pass);
+                break;
             }
+        }
+    }
+    private static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
         }
     }
 }
