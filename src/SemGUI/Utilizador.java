@@ -50,8 +50,5 @@ public class Utilizador {
     public String getUltimoNome() {
         return UltimoNome;
     }
-    public String getUtilizador(){
-        return "||Email="+Email+"||Palavra Passe="+PalavraPasse+"||"+PrimeiroNome+"||"+UltimoNome;
-    }
 
 }
