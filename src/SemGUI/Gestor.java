@@ -28,9 +28,9 @@ import java.text.*;
 public class Gestor {
     private boolean on = true;
     Scanner myObj = new Scanner(System.in);
-    private ArrayList <Utilizador> ListaUtilizador = new ArrayList<>();
-    private ArrayList <Produtos> ListaProdutos = new ArrayList<>();
-    private ArrayList <Vendas> ListaVendas = new ArrayList<>();
+    private ArrayList<Utilizador> ListaUtilizador = new ArrayList<>();
+    private ArrayList<Produtos> ListaProdutos = new ArrayList<>();
+    private ArrayList<Vendas> ListaVendas = new ArrayList<>();
 
     public Gestor() {
         menu0();
@@ -100,6 +100,7 @@ public class Gestor {
             return false;
         }
     }
+
     public boolean GuardarVenda(Vendas venda) {
         if (venda != null) {
             getListaVendas().add(venda);
@@ -118,9 +119,9 @@ public class Gestor {
         }
     }
 
-    public boolean RemoverProduto(Produtos produtos) {
-        ListaProdutos.remove(produtos);
-        return true;
+    public boolean RemoverProduto(int id) {
+            ListaProdutos.remove(id);
+            return true;
     }
 
     public void menu1(String Opcao) {
@@ -228,9 +229,7 @@ public class Gestor {
                         int tID = p.getId();
                         p.setId(tID);
                         tID += 1;
-                        String origin = "";
-                        origin.concat(u.getEmail());
-                        p.setOrigem(origin);
+                        p.setOrigem(email);
                         GuardarProduto(p);
                         System.out.println("Produto adicionado com sucesso");
                         APP(email, pass);
@@ -263,11 +262,15 @@ public class Gestor {
                 System.out.println("Escolha: ");
                 String Id = myObj.nextLine();
                 clearBuffer(myObj);
+                int ID= Integer.parseInt(Id);
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (Id.equals(p.getId()) && email.equals(p.getOrigem())) {
-                        RemoverProduto(p);
+                    if ((ID == p.getId()) && email.equals(p.getOrigem())) {
+                        RemoverProduto(ID);
                         System.out.println("Produto removido com sucesso");
+                        APP(email, pass);
+                    }else{
+                        System.out.println("Produto não pode ser removido");
                         APP(email, pass);
                     }
                 }
@@ -291,39 +294,39 @@ public class Gestor {
             case "8": {
                 //8- Fazer uma compra de um produto
                 System.out.println("Bem vindo ao menu de compra");
-                System.out.println("Decorou/anotou os IDs?\nSe não decorou e deseja ver os produtos de novo\nintroduza o IDS");
+                System.out.println("Decorou/anotou os IDs?\nSe não decorou e deseja ver os produtos de novo\nintroduza o ID");
                 System.out.println("Peço que faça a compra de um produto de cada vez\n" +
                         "Qual é o id do produto que deseja comprar?");
                 String produto = myObj.nextLine();
                 clearBuffer(myObj);
                 if (produto.equals("IDS") || produto.equals("ids")) {
                     allProducts();
-                }else{
-                    for (Produtos p:
-                         getListaProdutos()) {
-                        if(produto.equals(p.getId()) && p.getStock()>0){
-                            System.out.println("Estas a fazer a compra do produto: "+p.getNomeProduto());
-                            System.out.println("O produto é da categoria: "+p.getCategoria());
-                            System.out.println("O preço Unitario é: "+p.getPreco());
-                            System.out.println("Existem "+p.getStock()+" em stock");
+                } else {
+                    for (Produtos p :
+                            getListaProdutos()) {
+                        if (produto.equals(p.getId()) && p.getStock() > 0) {
+                            System.out.println("Estas a fazer a compra do produto: " + p.getNomeProduto());
+                            System.out.println("O produto é da categoria: " + p.getCategoria());
+                            System.out.println("O preço Unitario é: " + p.getPreco());
+                            System.out.println("Existem " + p.getStock() + " em stock");
                             System.out.println("Qual é a quantidade que deseja comprar?");
-                            String QNT=myObj.nextLine();
+                            String QNT = myObj.nextLine();
                             clearBuffer(myObj);
                             int qnt = Integer.parseInt(QNT);
-                            if(qnt>p.getStock()){
+                            if (qnt > p.getStock()) {
                                 System.out.println("Valor superior ao stock, compra cancelada, recomeçe a compra");
                                 APP(email, pass);
                             }
-                            System.out.println("O total é: "+qnt*p.getPreco()+
+                            System.out.println("O total é: " + qnt * p.getPreco() +
                                     "\nDeseja prosseguir com a compra?(responda com sim/nao)");
                             String opcion = myObj.nextLine();
                             clearBuffer(myObj);
-                            if(opcion.equals("sim")||opcion.equals("Sim")||opcion.equals("SIM")){
-                                Vendas v =new Vendas();
+                            if (opcion.equals("sim") || opcion.equals("Sim") || opcion.equals("SIM")) {
+                                Vendas v = new Vendas();
                                 v.setCategoria_Produto(p.getCategoria());
-                                Date x= new Date();
+                                Date x = new Date();
                                 v.setData(x);
-                                int nID=v.getID();
+                                int nID = v.getID();
                                 v.setID(nID);
                                 nID++;
                                 v.setEmailComprador(email);
@@ -333,23 +336,23 @@ public class Gestor {
                                 v.setNome_Produto(p.getNomeProduto());
                                 v.setQntComprada(qnt);
                                 v.setPrecoUni(p.getPreco());
-                                v.setValor_Total(qnt*p.getPreco());
+                                v.setValor_Total(qnt * p.getPreco());
                                 v.setEstadoCompra("Em processo");
                                 boolean c;
                                 c = GuardarVenda(v);
-                                if(c=true){
+                                if (c = true) {
                                     System.out.println("Compra efetuada com sucesso");
-                                } else if (c=false) {
-                                   System.out.println("compra não sucedida");
+                                } else if (c = false) {
+                                    System.out.println("compra não sucedida");
                                 }
 
-                            }else if(opcion.equals("nao")||opcion.equals("Nao")||opcion.equals("NAO")||
-                                    opcion.equals("nãO")||opcion.equals("Não")){
+                            } else if (opcion.equals("nao") || opcion.equals("Nao") || opcion.equals("NAO") ||
+                                    opcion.equals("nãO") || opcion.equals("Não")) {
                                 System.out.println("Compra cancelada");
                                 APP(email, pass);
                             }
 
-                        }else{
+                        } else {
                             System.out.println("Já nao existe esse produto em stock");
                             APP(email, pass);
                         }
@@ -364,7 +367,7 @@ public class Gestor {
                 System.out.println("3- Alterar o estado de uma venda");
                 String op = myObj.nextLine();
                 clearBuffer(myObj);
-                menuCompraVenda(op,email,pass);
+                menuCompraVenda(op, email, pass);
                 break;
             }
             case "10": {
@@ -480,6 +483,7 @@ public class Gestor {
 
         }
     }
+
     //menu utilizado para mudar as inforamaçoes de um produto
     public void menu4(String op, String email, String pass, String ID) {
         switch (op) {
@@ -547,12 +551,11 @@ public class Gestor {
                             clearBuffer(myObj);
                             int tStock = Integer.parseInt(N_S);
                             int ttStock = p.getStock();
-                            tStock+=ttStock;
+                            tStock += ttStock;
                             p.setNomeProduto(String.valueOf(tStock));
                             System.out.println("Stock adicionado com sucesso");
                             APP(email, pass);
-                        }
-                        else if (op_p.equals("2")) {
+                        } else if (op_p.equals("2")) {
                             System.out.println("Novo nome do produto: ");
                             String N_S = myObj.nextLine();
                             clearBuffer(myObj);
@@ -601,15 +604,18 @@ public class Gestor {
 
         }
     }
-    public void menuPesquisa(String opcao,String email,String pass) {
+
+    public void menuPesquisa(String opcao, String email, String pass) {
         switch (opcao) {
             case "1": {
                 if (ListaProdutos.size() == 0) {
                     System.out.println("Sem produtos adicionados na loja");
                     APP(email, pass);
                 } else {
-                    allProducts();
-                    APP(email, pass);
+
+                            allProducts();
+                        APP(email, pass);
+                    }
                 }
                 APP(email, pass);
                 break;
@@ -666,108 +672,108 @@ public class Gestor {
         }
     }
 
-        //Lista todos os produtos
-        public void allProducts () {
-            if (getListaProdutos().size() == 0) {
-                System.out.println("Sem produtos adicionados na loja");
-            } else {
-                System.out.println("Lista de Produtos");
-                for (Produtos p : getListaProdutos()) {
-                    System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
-                            + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem() + "---------------------------\n\n");
+    //Lista todos os produtos
+    public void allProducts(){
+        if (getListaProdutos().size() == 0) {
+            System.out.println("Sem produtos adicionados na loja");
+        } else {
+            System.out.println("Lista de Produtos");
+            for (Produtos p : getListaProdutos()) {
+                System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem()+"---------------------------\n\n");
 
-                }
-            }
-            return;
-        }
-        public void menuCompraVenda (String op, String email, String pass){
-            String pattern = "dd-M-yyyy hh:mm:ss";
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-            String date = simpleDateFormat.format(new Date());
-            switch (op) {
-                case "1": {
-                    System.out.println("Lista de Vendas");
-                    for (Vendas v : getListaVendas()) {
-                        if (v.getEmailVendedor().equals(email)) {
-                            System.out.println("---------------------------");
-                            System.out.println("ID de contrato compra/venda: " + v.getID());
-                            String tdate = "";
-                            tdate.concat(String.valueOf(v.getData()));
-                            date.concat(tdate);
-                            System.out.println("Data: " + v.getData());
-                            System.out.println("Email comprador: " + v.getEmailComprador());
-                            System.out.println("Morada: " + v.getMorada());
-                            System.out.println("Nome do produto: " + v.getNome_Produto());
-                            System.out.println("Categoria do Produto: " + v.getCategoria_Produto());
-                            System.out.println("ID do produto: " + v.getID_Produto());
-                            System.out.println("Quantidade: " + v.getQntComprada());
-                            System.out.println("Valor unitario: " + v.getPrecoUni());
-                            System.out.println("Valor total: " + v.getValor_Total());
-                            System.out.println("Estado: " + v.getEstadoCompra());
-                            System.out.println("---------------------------");
-                            APP(email, pass);
-                        }
-                    }
-                    APP(email, pass);
-                    break;
-                }
-                case "2": {
-                    System.out.println("Lista de Compras");
-                    for (Vendas v : getListaVendas()) {
-                        if (v.getEmailComprador().equals(email)) {
-                            System.out.println("---------------------------");
-                            System.out.println("ID de contrato compra/venda: " + v.getID());
-                            System.out.println("Data: " + v.getData());
-                            System.out.println("Email comprador: " + v.getEmailComprador());
-                            System.out.println("Morada: " + v.getMorada());
-                            System.out.println("Nome do produto: " + v.getNome_Produto());
-                            System.out.println("Categoria do Produto: " + v.getCategoria_Produto());
-                            System.out.println("ID do produto: " + v.getID_Produto());
-                            System.out.println("Quantidade: " + v.getQntComprada());
-                            System.out.println("Valor unitario: " + v.getPrecoUni());
-                            System.out.println("Valor total: " + v.getValor_Total());
-                            System.out.println("Estado: " + v.getEstadoCompra());
-                            System.out.println("---------------------------");
-                            APP(email, pass);
-                        }
-                    }
-                    APP(email, pass);
-                    break;
-                }
-                case "3": {
-                    System.out.println("Qual é o ID de venda que deseja alterar");
-                    String id = myObj.nextLine();
-                    clearBuffer(myObj);
-                    for (Vendas v : getListaVendas()) {
-                        if (v.getEmailVendedor().equals(email) && id.equals(v.getID())) {
-                            System.out.println("---------------------------");
-                            System.out.println("ID de contrato compra/venda: " + v.getID());
-                            System.out.println("Data: " + v.getData());
-                            System.out.println("Email comprador: " + v.getEmailComprador());
-                            System.out.println("Morada: " + v.getMorada());
-                            System.out.println("Nome do produto: " + v.getNome_Produto());
-                            System.out.println("Categoria do Produto: " + v.getCategoria_Produto());
-                            System.out.println("ID do produto: " + v.getID_Produto());
-                            System.out.println("Quantidade: " + v.getQntComprada());
-                            System.out.println("Valor unitario: " + v.getPrecoUni());
-                            System.out.println("Valor total: " + v.getValor_Total());
-                            System.out.println("Estado atual: " + v.getEstadoCompra());
-                            System.out.println("---------------------------");
-                            System.out.println("Estado que deseja colcar: ");
-                            String estado = myObj.nextLine();
-                            v.setEstadoCompra(estado);
-                            System.out.println("Estado atualizado");
-                            APP(email, pass);
-                        }
-                    }
-                    APP(email, pass);
-                    break;
-                }
             }
         }
-        private static void clearBuffer (Scanner scanner){
-            if (scanner.hasNextLine()) {
-                scanner.nextLine();
+        return;
+    }
+    public void menuCompraVenda(String op, String email, String pass){
+        String pattern = "dd-M-yyyy hh:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+        switch (op){
+            case "1":{
+                System.out.println("Lista de Vendas");
+                for(Vendas v : getListaVendas()){
+                    if (v.getEmailVendedor().equals(email)){
+                        System.out.println("---------------------------");
+                        System.out.println("ID de contrato compra/venda: "+v.getID());
+                        String tdate = "";
+                        tdate.concat(String.valueOf(v.getData()));
+                        date.concat(tdate);
+                        System.out.println("Data: "+v.getData());
+                        System.out.println("Email comprador: "+v.getEmailComprador());
+                        System.out.println("Morada: "+v.getMorada());
+                        System.out.println("Nome do produto: "+v.getNome_Produto());
+                        System.out.println("Categoria do Produto: "+v.getCategoria_Produto());
+                        System.out.println("ID do produto: "+v.getID_Produto());
+                        System.out.println("Quantidade: "+v.getQntComprada());
+                        System.out.println("Valor unitario: "+v.getPrecoUni());
+                        System.out.println("Valor total: "+v.getValor_Total());
+                        System.out.println("Estado: "+v.getEstadoCompra());
+                        System.out.println("---------------------------");
+                        APP(email, pass);
+                    }
+                }
+                APP(email,pass);
+                break;
+            }
+            case "2":{
+                System.out.println("Lista de Compras");
+                for(Vendas v : getListaVendas()){
+                    if (v.getEmailComprador().equals(email)){
+                        System.out.println("---------------------------");
+                        System.out.println("ID de contrato compra/venda: "+v.getID());
+                        System.out.println("Data: "+v.getData());
+                        System.out.println("Email comprador: "+v.getEmailComprador());
+                        System.out.println("Morada: "+v.getMorada());
+                        System.out.println("Nome do produto: "+v.getNome_Produto());
+                        System.out.println("Categoria do Produto: "+v.getCategoria_Produto());
+                        System.out.println("ID do produto: "+v.getID_Produto());
+                        System.out.println("Quantidade: "+v.getQntComprada());
+                        System.out.println("Valor unitario: "+v.getPrecoUni());
+                        System.out.println("Valor total: "+v.getValor_Total());
+                        System.out.println("Estado: "+v.getEstadoCompra());
+                        System.out.println("---------------------------");
+                        APP(email, pass);
+                    }
+                }
+                APP(email, pass);
+                break;
+            }
+            case "3":{
+                System.out.println("Qual é o ID de venda que deseja alterar");
+                String id = myObj.nextLine();
+                clearBuffer(myObj);
+                for(Vendas v : getListaVendas()){
+                    if(v.getEmailVendedor().equals(email)&& id.equals(v.getID())){
+                        System.out.println("---------------------------");
+                        System.out.println("ID de contrato compra/venda: "+v.getID());
+                        System.out.println("Data: "+v.getData());
+                        System.out.println("Email comprador: "+v.getEmailComprador());
+                        System.out.println("Morada: "+v.getMorada());
+                        System.out.println("Nome do produto: "+v.getNome_Produto());
+                        System.out.println("Categoria do Produto: "+v.getCategoria_Produto());
+                        System.out.println("ID do produto: "+v.getID_Produto());
+                        System.out.println("Quantidade: "+v.getQntComprada());
+                        System.out.println("Valor unitario: "+v.getPrecoUni());
+                        System.out.println("Valor total: "+v.getValor_Total());
+                        System.out.println("Estado atual: "+v.getEstadoCompra());
+                        System.out.println("---------------------------");
+                        System.out.println("Estado que deseja colcar: ");
+                        String estado = myObj.nextLine();
+                        v.setEstadoCompra(estado);
+                        System.out.println("Estado atualizado");
+                        APP(email, pass);
+                    }
+                }
+                APP(email, pass);
+                break;
             }
         }
     }
+    private static void clearBuffer(Scanner scanner) {
+        if (scanner.hasNextLine()) {
+            scanner.nextLine();
+        }
+    }
+}
