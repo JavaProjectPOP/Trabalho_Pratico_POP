@@ -200,7 +200,6 @@ public class Gestor {
                         clearBuffer(myObj);
                         menu3(op, email, pass);
                     }
-
                 }
                 break;
             }
@@ -616,7 +615,6 @@ public class Gestor {
                             allProducts();
                         APP(email, pass);
                     }
-                }
                 APP(email, pass);
                 break;
             }
