@@ -27,6 +27,7 @@ import java.text.*;
 
 public class Gestor {
     private boolean on = true;
+    private int ID;
     Scanner myObj = new Scanner(System.in);
     private ArrayList<Utilizador> ListaUtilizador = new ArrayList<>();
     private ArrayList<Produtos> ListaProdutos = new ArrayList<>();
@@ -225,9 +226,8 @@ public class Gestor {
                         p.setCategoria(cat);
                         p.setPreco(preco);
                         p.setStock(Stock);
-                        int tID = p.getId();
-                        p.setId(tID);
-                        tID += 1;
+                        p.setId(this.ID);
+                        this.ID++;
                         p.setOrigem(email);
                         GuardarProduto(p);
                         System.out.println("Produto adicionado com sucesso");
@@ -677,8 +677,8 @@ public class Gestor {
         } else {
             System.out.println("Lista de Produtos");
             for (Produtos p : getListaProdutos()) {
-                System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
-                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem()+"---------------------------\n\n");
+                System.out.println("\n---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: " + p.getOrigem()+"\n---------------------------\n\n");
 
             }
         }
