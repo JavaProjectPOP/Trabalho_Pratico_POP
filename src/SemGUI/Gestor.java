@@ -222,7 +222,7 @@ public class Gestor {
 
                 break;
             }
-            case "4": {
+            case "3": {
                 //Editar as informações de um produto existente
                 allProducts();
                 System.out.println("Qual é o ID do produto que deseja alterar as informações?");
@@ -240,7 +240,7 @@ public class Gestor {
                 menu4(op, email, pass, Id);
                 break;
             }
-            case "5": {
+            case "4": {
                 allProducts();
                 System.out.println("Qual é o ID do produto que deseja remover?");
                 System.out.println("Escolha: ");
@@ -260,12 +260,12 @@ public class Gestor {
                 }
                 break;
             }
-            case "6": {
+            case "5": {
                 allProducts();
                 APP(email, pass);
                 break;
             }
-            case "7": {
+            case "6": {
                 //7- Pesquisa por produto(pode pesquisar pela categoria ou pelo no me do produto)
                 System.out.println("1- Pesquisar produtos pelo nome dos mesmos");
                 System.out.println("2- Pesquisar produtos pela categoria");
@@ -275,7 +275,7 @@ public class Gestor {
                 menuPesquisa(pesquisa, email, pass);
                 break;
             }
-            case "8": {
+            case "7": {
                 //8- Fazer uma compra de um produto
                 System.out.println("Bem vindo ao menu de compra");
                 System.out.println("Peço que faça a compra de um produto de cada vez\n" +
@@ -342,7 +342,7 @@ public class Gestor {
                 APP(email, pass);
                 break;
             }
-            case "9": {
+            case "8": {
                 System.out.println("1- Ver as vendas feitas");
                 System.out.println("2- Ver as compras feitas");
                 System.out.println("3- Alterar o estado de uma venda");
@@ -351,8 +351,12 @@ public class Gestor {
                 menuCompraVenda(op, email, pass);
                 break;
             }
-            case "10": {
+            case "9": {
                 menu0();
+            }
+            default : {
+                System.out.println("Seleciona uma opção Selecionada");
+                APP(email,pass);
             }
         }
     }
