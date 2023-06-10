@@ -228,7 +228,7 @@ public class Gestor {
                 allProducts();
                 System.out.println("Qual é o ID do produto que deseja alterar as informações?");
                 System.out.println("Escolha: ");
-                String Id = myObj.nextLine();
+                String tId = myObj.nextLine();
                 clearBuffer(myObj);
                 System.out.println("O que deseja alterar?");
                 System.out.println("1- Nome do produto");
@@ -236,9 +236,10 @@ public class Gestor {
                 System.out.println("3- Preço");
                 System.out.println("4- Stock");
                 System.out.println("5- Todas as informações");
-                String op = myObj.nextLine();
+                String of = myObj.nextLine();
                 clearBuffer(myObj);
-                menu4(op, email, pass, Id);
+                int Id = Integer.parseInt(tId);
+                menu4(of, email, pass,Id);
                 break;
             }
             case "4": {
@@ -481,12 +482,12 @@ public class Gestor {
     }
 
     //menu utilizado para mudar as inforamaçoes de um produto
-    public void menu4 (String op, String email, String pass, String ID){
+    public void menu4 (String op, String email, String pass, int ID){
         switch (op) {
             case "1": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Nome atual do produto: " + p.getNomeProduto());
                         System.out.println("Novo nome do produto: ");
                         String N_N = myObj.nextLine();
@@ -498,12 +499,11 @@ public class Gestor {
                 }
                 APP(email, pass);
                 break;
-
             }
             case "2": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Categoria atual do produto: " + p.getCategoria());
                         System.out.println("Nova categoria do produto: ");
                         String N_C = myObj.nextLine();
@@ -518,7 +518,7 @@ public class Gestor {
             case "3": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Preço atual do produto: " + p.getPreco());
                         System.out.println("Preço novo do produto: ");
                         String N_P = myObj.nextLine();
@@ -533,7 +533,7 @@ public class Gestor {
             case "4": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Stock atual do produto: " + p.getStock());
                         System.out.println("1- Adicionar produtos ao stock atual");
                         System.out.println("2- Mudar o stock atual");
@@ -565,7 +565,7 @@ public class Gestor {
             case "5": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Nome atual do produto: " + p.getNomeProduto());
                         System.out.println("Novo nome do produto: ");
                         String N_P = myObj.nextLine();
