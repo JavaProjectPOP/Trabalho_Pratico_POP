@@ -1,5 +1,10 @@
 package SemGUI;
-
+/**
+@Authors
+André Carvalho - 29740
+Lucas Cruz -
+Luís Martinho-
+*/
 public class Utilizador {
     private String PrimeiroNome;
     private String UltimoNome;

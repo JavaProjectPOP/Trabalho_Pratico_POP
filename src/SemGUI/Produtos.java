@@ -1,5 +1,10 @@
 package SemGUI;
-
+/**
+@Authors
+André Carvalho - 29740
+Lucas Cruz -
+Luís Martinho-
+*/
 public class Produtos {
     private String NomeProduto;
     private String Categoria;
