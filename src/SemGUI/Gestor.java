@@ -657,7 +657,7 @@ public class Gestor {
             for (Produtos p : ListaProdutos) {
                 System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
                         + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: "
-                        + p.getOrigem() + "---------------------------\n\n");
+                        + p.getOrigem() + "\n---------------------------\n\n");
             }
         }
     }
