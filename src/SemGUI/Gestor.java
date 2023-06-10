@@ -24,8 +24,8 @@ public class Gestor {
     public void menu0() {
         while (isOn() == true) {
             System.out.println("Bem Vindo a App");
-            System.out.println("1-Registar um usuario");
-            System.out.println("2-Logar a sua conta");
+            System.out.println("1-Registar um utilizador");
+            System.out.println("2-Fazer login na sua conta");
             System.out.println("3-Sair");
             System.out.println("Escolha: ");
             String Opcao = myObj.nextLine();
@@ -59,16 +59,16 @@ public class Gestor {
         for (Utilizador u : ListaUtilizador) {
             if (email.equals(u.getEmail()) && pass.equals(u.getPalavraPasse())) {
                 System.out.println("Bem Vindo " + u.getPrimeiroNome() + " " + u.getUltimoNome());
-                System.out.println("1- Alterar os seus dados de usuario");
+                System.out.println("1- Alterar os seus dados de utilizador");
                 System.out.println("2- Adicionar um produto");
-                System.out.println("4- Editar as informações de um produto existente");
-                System.out.println("5- Remover um produto");
-                System.out.println("6- Ver todos os produtos");
-                System.out.println("7- Pesquisa por produto(pode pesquisar pela categoria ou pelo no me do produto)");//feito
+                System.out.println("3- Editar as informações de um produto existente");
+                System.out.println("4- Remover um produto");
+                System.out.println("5- Ver todos os produtos");
+                System.out.println("6- Pesquisa por produto(pode pesquisar pela categoria ou pelo nome do produto)");//feito
                 System.out.println("Antes de fazer uma compra recomendo que veja os produtos no menu 6\ne anotar o ID.");
-                System.out.println("8- Fazer uma compra de um produto");
-                System.out.println("9- Ver as informações das suas vendas e compras");
-                System.out.println("10- Logout");
+                System.out.println("7- Fazer uma compra de um produto");
+                System.out.println("8- Ver as informações das suas vendas e compras");
+                System.out.println("9- Logout");
                 String opcao = myObj.nextLine();
                 clearBuffer(myObj);
                 menu2(opcao, email, pass);
@@ -136,7 +136,7 @@ public class Gestor {
                 u.setMorada(Morada);
                 GuardarUser(u);
                 if (GuardarUser(u)) {
-                    System.out.println("Registrado com sucesso Sr/Sra - " + P_N + " " + U_N);
+                    System.out.println("Registado com sucesso Sr/Sra - " + P_N + " " + U_N);
                 } else {
                     System.out.println("Foi detetado um erro quando estava a fazer o registo, " +
                             "tente novamente mais tarde");
@@ -180,7 +180,7 @@ public class Gestor {
                     if (email.equals(u.getEmail()) && pass.equals(u.getPalavraPasse())) {
                         System.out.println("Quais informações deseja alterar?");
                         System.out.println("1-Primeiro nome");
-                        System.out.println("2-Ultimo nome");
+                        System.out.println("2-último nome");
                         System.out.println("3-Email");
                         System.out.println("4-Palava-passe");
                         System.out.println("5-Todas as informações");
@@ -224,25 +224,26 @@ public class Gestor {
 
                 break;
             }
-            case "4": {
+            case "3": {
                 //Editar as informações de um produto existente
                 allProducts();
                 System.out.println("Qual é o ID do produto que deseja alterar as informações?");
                 System.out.println("Escolha: ");
-                String Id = myObj.nextLine();
+                String tId = myObj.nextLine();
                 clearBuffer(myObj);
-                System.out.println("o que deseja alterar?");
+                System.out.println("O que deseja alterar?");
                 System.out.println("1- Nome do produto");
                 System.out.println("2- Categoria");
                 System.out.println("3- Preço");
                 System.out.println("4- Stock");
                 System.out.println("5- Todas as informações");
-                String op = myObj.nextLine();
+                String of = myObj.nextLine();
                 clearBuffer(myObj);
-                menu4(op, email, pass, Id);
+                int Id = Integer.parseInt(tId);
+                menu4(of, email, pass,Id);
                 break;
             }
-            case "5": {
+            case "4": {
                 allProducts();
                 System.out.println("Qual é o ID do produto que deseja remover?");
                 System.out.println("Escolha: ");
@@ -262,12 +263,12 @@ public class Gestor {
                 }
                 break;
             }
-            case "6": {
+            case "5": {
                 allProducts();
                 APP(email, pass);
                 break;
             }
-            case "7": {
+            case "6": {
                 //7- Pesquisa por produto(pode pesquisar pela categoria ou pelo no me do produto)
                 System.out.println("1- Pesquisar produtos pelo nome dos mesmos");
                 System.out.println("2- Pesquisar produtos pela categoria");
@@ -277,7 +278,7 @@ public class Gestor {
                 menuPesquisa(pesquisa, email, pass);
                 break;
             }
-            case "8": {
+            case "7": {
                 //8- Fazer uma compra de um produto
                 System.out.println("Bem vindo ao menu de compra");
                 System.out.println("Peço que faça a compra de um produto de cada vez\n" +
@@ -288,7 +289,7 @@ public class Gestor {
                 for (Produtos p :
                         getListaProdutos()) {
                     if (f==p.getId()){
-                        System.out.println("Estas a fazer a compra do produto: " + p.getNomeProduto());
+                        System.out.println("Está a fazer a compra do produto: " + p.getNomeProduto());
                         System.out.println("O produto é da categoria: " + p.getCategoria());
                         System.out.println("O preço Unitario é: " + p.getPreco());
                         System.out.println("Existem " + p.getStock() + " em stock");
@@ -297,11 +298,11 @@ public class Gestor {
                         clearBuffer(myObj);
                         int qnt = Integer.parseInt(QNT);
                         if (qnt > p.getStock()) {
-                            System.out.println("Valor superior ao stock, compra cancelada, recomeçe a compra");
+                            System.out.println("Valor superior ao stock, compra cancelada, recomece a compra");
                             APP(email, pass);
                         }
                         System.out.println("O total é: " + qnt * p.getPreco() +
-                                "\nDeseja prosseguir com a compra?(responda com sim/nao)");
+                                "\nDeseja prosseguir com a compra?(responda com sim/não)");
                         String opcion = myObj.nextLine();
                         clearBuffer(myObj);
                         if (opcion.equals("sim") || opcion.equals("Sim") || opcion.equals("SIM")) {
@@ -315,22 +316,27 @@ public class Gestor {
                             v.setEmailComprador(email);
                             v.setEmailVendedor(p.getOrigem());
                             v.setID_Produto(p.getId());
+                            for (Utilizador u:getListaUtilizador()) {
+                                if(u.getEmail().equals(email)&&u.getPalavraPasse().equals(pass)) {
+                                    v.setMorada(u.getMorada());
+                                }
+                            }
                             v.setCategoria_Produto(p.getCategoria());
                             v.setNome_Produto(p.getNomeProduto());
                             v.setQntComprada(qnt);
                             v.setPrecoUni(p.getPreco());
                             v.setValor_Total(qnt * p.getPreco());
-                            v.setEstadoCompra("Em processo");
+                            v.setEstadoCompra("Em processo...");
                             boolean c;
                             c = GuardarVenda(v);
                             if (c = true) {
                                 System.out.println("Compra efetuada com sucesso");
                             } else if (c = false) {
-                                System.out.println("compra não sucedida");
+                                System.out.println("Compra não sucedida");
                             }
 
                         } else if (opcion.equals("nao") || opcion.equals("Nao") || opcion.equals("NAO") ||
-                                opcion.equals("nãO") || opcion.equals("Não")) {
+                                opcion.equals("não") || opcion.equals("Não")) {
                             System.out.println("Compra cancelada");
                             APP(email, pass);
                         }
@@ -344,7 +350,7 @@ public class Gestor {
                 APP(email, pass);
                 break;
             }
-            case "9": {
+            case "8": {
                 System.out.println("1- Ver as vendas feitas");
                 System.out.println("2- Ver as compras feitas");
                 System.out.println("3- Alterar o estado de uma venda");
@@ -353,8 +359,13 @@ public class Gestor {
                 menuCompraVenda(op, email, pass);
                 break;
             }
-            case "10": {
+            case "9": {
                 menu0();
+                break;
+            }
+            default : {
+                System.out.println("Seleciona uma opção Valida");
+                APP(email,pass);
             }
         }
     }
@@ -382,7 +393,7 @@ public class Gestor {
                 for (Utilizador u :
                         getListaUtilizador()) {
                     if (email.equals(u.getEmail()) && pass.equals(u.getPalavraPasse())) {
-                        System.out.println("Ultimo nome atual: " + u.getUltimoNome());
+                        System.out.println("Último nome atual: " + u.getUltimoNome());
                         System.out.println("Novo nome: ");
                         String nome = myObj.nextLine();
                         clearBuffer(myObj);
@@ -419,7 +430,7 @@ public class Gestor {
                         String tpp = myObj.nextLine();
                         clearBuffer(myObj);
                         u.setPalavraPasse(tpp);
-                        System.out.println("Palavra-passe alterado com sucesso");
+                        System.out.println("Palavra-passe alterada com sucesso");
                         APP(email, tpp);
                     }
                 }
@@ -437,12 +448,12 @@ public class Gestor {
                         u.setPrimeiroNome(Pnome);
                         System.out.println("Nome alterado com sucesso");
                         //Alterar ultimo nome
-                        System.out.println("Ultimo nome atual: " + u.getUltimoNome());
+                        System.out.println("Último nome atual: " + u.getUltimoNome());
                         System.out.println("Novo nome: ");
                         String Unome = myObj.nextLine();
                         clearBuffer(myObj);
                         u.setUltimoNome(Unome);
-                        System.out.println("Ultimo nome alterado com sucesso");
+                        System.out.println("Último nome alterado com sucesso");
                         //Alterar email
                         System.out.println("Email atual: " + u.getEmail());
                         System.out.println("Novo nome: ");
@@ -456,7 +467,7 @@ public class Gestor {
                         String tpp = myObj.nextLine();
                         clearBuffer(myObj);
                         u.setPalavraPasse(tpp);
-                        System.out.println("Palavra-passe alterado com sucesso");
+                        System.out.println("Palavra-passe alterada com sucesso");
                         APP(tEmail, tpp);
                     }
                 }
@@ -468,12 +479,12 @@ public class Gestor {
     }
 
     //menu utilizado para mudar as inforamaçoes de um produto
-    public void menu4 (String op, String email, String pass, String ID){
+    public void menu4 (String op, String email, String pass, int ID){
         switch (op) {
             case "1": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Nome atual do produto: " + p.getNomeProduto());
                         System.out.println("Novo nome do produto: ");
                         String N_N = myObj.nextLine();
@@ -485,12 +496,11 @@ public class Gestor {
                 }
                 APP(email, pass);
                 break;
-
             }
             case "2": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Categoria atual do produto: " + p.getCategoria());
                         System.out.println("Nova categoria do produto: ");
                         String N_C = myObj.nextLine();
@@ -505,9 +515,9 @@ public class Gestor {
             case "3": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Preço atual do produto: " + p.getPreco());
-                        System.out.println("Preço nome do produto: ");
+                        System.out.println("Preço novo do produto: ");
                         String N_P = myObj.nextLine();
                         clearBuffer(myObj);
                         p.setNomeProduto(N_P);
@@ -520,7 +530,7 @@ public class Gestor {
             case "4": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Stock atual do produto: " + p.getStock());
                         System.out.println("1- Adicionar produtos ao stock atual");
                         System.out.println("2- Mudar o stock atual");
@@ -552,7 +562,7 @@ public class Gestor {
             case "5": {
                 for (Produtos p :
                         getListaProdutos()) {
-                    if (ID.equals(p.getId()) && email.equals(p.getOrigem())) {
+                    if (ID == p.getId() && email.equals(p.getOrigem())) {
                         System.out.println("Nome atual do produto: " + p.getNomeProduto());
                         System.out.println("Novo nome do produto: ");
                         String N_P = myObj.nextLine();
@@ -646,7 +656,11 @@ public class Gestor {
         if (getListaProdutos().size() == 0) {
             System.out.println("Sem produtos adicionados na loja");
         } else {
-            allProducts();
+            for (Produtos p : ListaProdutos) {
+                System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: "
+                        + p.getOrigem() + "\n---------------------------\n\n");
+            }
         }
     }
     public void menuCompraVenda (String op, String email, String pass){
@@ -670,7 +684,7 @@ public class Gestor {
                         System.out.println("Categoria do Produto: " + v.getCategoria_Produto());
                         System.out.println("ID do produto: " + v.getID_Produto());
                         System.out.println("Quantidade: " + v.getQntComprada());
-                        System.out.println("Valor unitario: " + v.getPrecoUni());
+                        System.out.println("Valor unitário: " + v.getPrecoUni());
                         System.out.println("Valor total: " + v.getValor_Total());
                         System.out.println("Estado: " + v.getEstadoCompra());
                         System.out.println("---------------------------");
@@ -693,7 +707,7 @@ public class Gestor {
                         System.out.println("Categoria do Produto: " + v.getCategoria_Produto());
                         System.out.println("ID do produto: " + v.getID_Produto());
                         System.out.println("Quantidade: " + v.getQntComprada());
-                        System.out.println("Valor unitario: " + v.getPrecoUni());
+                        System.out.println("Valor unitário: " + v.getPrecoUni());
                         System.out.println("Valor total: " + v.getValor_Total());
                         System.out.println("Estado: " + v.getEstadoCompra());
                         System.out.println("---------------------------");
@@ -718,7 +732,7 @@ public class Gestor {
                         System.out.println("Categoria do Produto: " + v.getCategoria_Produto());
                         System.out.println("ID do produto: " + v.getID_Produto());
                         System.out.println("Quantidade: " + v.getQntComprada());
-                        System.out.println("Valor unitario: " + v.getPrecoUni());
+                        System.out.println("Valor unitário: " + v.getPrecoUni());
                         System.out.println("Valor total: " + v.getValor_Total());
                         System.out.println("Estado atual: " + v.getEstadoCompra());
                         System.out.println("---------------------------");
