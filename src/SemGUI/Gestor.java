@@ -59,14 +59,15 @@ public class Gestor {
                 System.out.println("Bem Vindo " + u.getPrimeiroNome() + " " + u.getUltimoNome());
                 System.out.println("1- Alterar os seus dados de utilizador");
                 System.out.println("2- Adicionar um produto");
-                System.out.println("4- Editar as informações de um produto existente");
-                System.out.println("5- Remover um produto");
-                System.out.println("6- Ver todos os produtos");
-                System.out.println("7- Pesquisa por produto(pode pesquisar pela categoria ou pelo nome do produto)");//feito
+                System.out.println("3- Editar as informações de um produto existente");
+                System.out.println("4- Remover um produto");
+                System.out.println("5- Ver todos os produtos");
+                System.out.println("6- Pesquisa por produto(pode pesquisar pela categoria ou pelo nome do produto)");//feito
                 System.out.println("Antes de fazer uma compra recomendo que veja os produtos no menu 6\ne anotar o ID.");
-                System.out.println("8- Fazer uma compra de um produto");
-                System.out.println("9- Ver as informações das suas vendas e compras");
-                System.out.println("10- Logout");
+                System.out.println("7- Fazer uma compra de um produto");
+                System.out.println("8- Ver as informações das suas vendas e compras");
+                System.out.println("9- Logout");
+                System.out.println("10-Fechar Programa");
                 String opcao = myObj.nextLine();
                 clearBuffer(myObj);
                 menu2(opcao, email, pass);
@@ -353,6 +354,11 @@ public class Gestor {
             }
             case "9": {
                 menu0();
+            }
+            case "10": {
+                System.out.println("Obrigado e um bom dia");
+                setOff(false);
+                break;
             }
             default : {
                 System.out.println("Seleciona uma opção Selecionada");
