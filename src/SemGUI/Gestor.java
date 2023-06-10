@@ -314,6 +314,11 @@ public class Gestor {
                             v.setEmailComprador(email);
                             v.setEmailVendedor(p.getOrigem());
                             v.setID_Produto(p.getId());
+                            for (Utilizador u:getListaUtilizador()) {
+                                if(u.getEmail().equals(email)&&u.getPalavraPasse().equals(pass)) {
+                                    v.setMorada(u.getMorada());
+                                }
+                            }
                             v.setCategoria_Produto(p.getCategoria());
                             v.setNome_Produto(p.getNomeProduto());
                             v.setQntComprada(qnt);
