@@ -67,7 +67,6 @@ public class Gestor {
                 System.out.println("7- Fazer uma compra de um produto");
                 System.out.println("8- Ver as informações das suas vendas e compras");
                 System.out.println("9- Logout");
-                System.out.println("10-Fechar Programa");
                 String opcao = myObj.nextLine();
                 clearBuffer(myObj);
                 menu2(opcao, email, pass);
@@ -360,10 +359,6 @@ public class Gestor {
             }
             case "9": {
                 menu0();
-            }
-            case "10": {
-                System.out.println("Obrigado e um bom dia");
-                setOff(false);
                 break;
             }
             default : {
