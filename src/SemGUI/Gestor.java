@@ -361,7 +361,7 @@ public class Gestor {
                 break;
             }
             default : {
-                System.out.println("Seleciona uma opção Selecionada");
+                System.out.println("Seleciona uma opção Valida");
                 APP(email,pass);
             }
         }
@@ -654,7 +654,11 @@ public class Gestor {
         if (getListaProdutos().size() == 0) {
             System.out.println("Sem produtos adicionados na loja");
         } else {
-            allProducts();
+            for (Produtos p : ListaProdutos) {
+                System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                        + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: "
+                        + p.getOrigem() + "---------------------------\n\n");
+            }
         }
     }
     public void menuCompraVenda (String op, String email, String pass){
