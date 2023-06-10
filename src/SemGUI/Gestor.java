@@ -6,6 +6,8 @@ import java.util.*;
 import java.text.*;
 /**
  * @authors Andre Carvalho 29740
+ * @authors Lucas Cruz 23273
+ * @authors Luis Lopes 25361
  */
 public class Gestor {
     private boolean on = true;
