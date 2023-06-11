@@ -603,8 +603,17 @@ public class Gestor {
                     System.out.println("Sem produtos adicionados na loja");
                     APP(email, pass);
                 } else {
-                    allProducts();
-                    APP(email, pass);
+                    System.out.println("Escreva o que quer pesquisar:");
+                    String pesq = myObj.nextLine();
+                    System.out.println("Lista de Produtos");
+                    for (Produtos p : ListaProdutos) {
+                        if (pesq.equals(p.getNomeProduto())) {
+                            System.out.println("---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                                    + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock() + "\nOrigem do produto: "
+                                    + p.getOrigem() + "---------------------------\n\n");
+                            APP(email, pass);
+                        }
+                    }
                 }
                 APP(email, pass);
                 break;
