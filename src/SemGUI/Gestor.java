@@ -314,6 +314,8 @@ public class Gestor {
                             int nID = v.getID();
                             v.setID(nID);
                             nID++;
+                            int STKAT = p.getStock() - f;
+                            p.setStock(STKAT);
                             v.setEmailComprador(email);
                             v.setEmailVendedor(p.getOrigem());
                             v.setID_Produto(p.getId());
