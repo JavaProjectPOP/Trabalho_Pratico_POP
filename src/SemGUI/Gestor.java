@@ -68,7 +68,8 @@ public class Gestor {
                 System.out.println("Antes de fazer uma compra recomendo que veja os produtos no menu 6\ne anotar o ID.");
                 System.out.println("7- Fazer uma compra de um produto");
                 System.out.println("8- Ver as informações das suas vendas e compras");
-                System.out.println("9- Logout");
+                System.out.println("9- Ver todos os meus produtos");
+                System.out.println("10- Logout");
                 String opcao = myObj.nextLine();
                 clearBuffer(myObj);
                 menu2(opcao, email, pass);
@@ -313,6 +314,8 @@ public class Gestor {
                             int nID = v.getID();
                             v.setID(nID);
                             nID++;
+                            int STKAT = p.getStock() - f;
+                            p.setStock(STKAT);
                             v.setEmailComprador(email);
                             v.setEmailVendedor(p.getOrigem());
                             v.setID_Produto(p.getId());
@@ -360,6 +363,22 @@ public class Gestor {
                 break;
             }
             case "9": {
+                if (ListaProdutos.size() == 0) {
+                    System.out.println("Sem produtos adicionados na loja");
+                    APP(email, pass);
+                } else {
+                    System.out.println("Lista de Produtos");
+                    for (Produtos p : ListaProdutos) {
+                        if (p.getOrigem().equals(email)) {
+                            System.out.println("\n---------------------------" + "\nID_Produto: " + p.getId() + "\nNome do Produto: " + p.getNomeProduto()
+                                    + "\nCategoria: " + p.getCategoria() + "\nPreço: " + p.getPreco() + "\nStock: " + p.getStock()+"\n---------------------------\n");
+                            APP(email, pass);
+                        }
+                    }
+                }
+                break;
+            }
+            case "10":{
                 menu0();
                 break;
             }
